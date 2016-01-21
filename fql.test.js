@@ -237,7 +237,7 @@ describe('Functional Query Language - Level 2', function () {
     expect(results).toEqual(expectedResults);
   });
 
-  xit('should support left outer joining the results with a count', function () {
+  it('should support left outer joining the results with a count', function () {
     var rolesTable = new FQL(roles);
 
     var results = moviesTable
@@ -256,7 +256,7 @@ describe('Functional Query Language - Level 2', function () {
   /**
    * A double left join!  Let's get the actors in the movie
    */
-  xit('should support double left outer joining the results', function () {
+  it('should support double left outer joining the results', function () {
     var rolesTable = new FQL(roles);
     var actorsTable = new FQL(actors);
 
@@ -309,7 +309,7 @@ describe('Functional Query Language - Indexing', function () {
    * are many indices with gender 'M'. So make sure to store the 
    * indices as an array of numbers.
    */
-  xit('should support a function to add an index to the FQL class', function() {
+  it('should support a function to add an index to the FQL class', function() {
     // it should not be possible to look up the index of an entry
     // in a row prior to `addIndex` on that row
     expect( moviesTable.getIndicesOf('name', 'Apollo 13') ).toEqual( undefined );
@@ -325,7 +325,7 @@ describe('Functional Query Language - Indexing', function () {
    *
    * You can verify this with something like: actors.forEach(function(el, i) { if(el.last_name == 'Allison') { console.log(i) } })
    */
-  xit('should support indexing a value that exists in multiple rows', function() {
+  it('should support indexing a value that exists in multiple rows', function() {
     
     actorsTable.addIndex('last_name');
     expect( actorsTable.getIndicesOf('last_name', 'Allison') ).toEqual( [14, 15, 16] );

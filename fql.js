@@ -26,6 +26,7 @@ function merge (obj1, obj2) {
 
 function FQL (table) {
 	this.data = table;
+	this.indexTables = {};
 }
 
 module.exports = {
@@ -95,7 +96,7 @@ FQL.prototype.left_join = function(fql, func) {
 					movieCopy[key] = movie[key];
 				}
 
-				for (var key in role) {
+				for (key in role) {
 					movieCopy[key] = role[key];
 				}
 				newData.push(movieCopy);
@@ -106,3 +107,36 @@ FQL.prototype.left_join = function(fql, func) {
 
 	return new FQL(newData);
 };
+
+FQL.prototype.addIndex = function(key){
+	var indexTable = {};
+	//Iterate through data
+	//for each row, create array for that index if there isn't already one
+	//if that index exists in indexTable push table array index to index array
+	this.data.forEach(function(movie,i){
+		if(!indexTable[movie[key]]) indexTable[movie[key]] = [i];
+		else indexTable[movie[key]].push(i);
+	});
+
+	this.indexTables[key]=indexTable;
+	return this;
+};
+
+FQL.prototype.getIndicesOf = function(key,value){
+	if(this.indexTables[key]) return this.indexTables[key][value];
+	return undefined;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
