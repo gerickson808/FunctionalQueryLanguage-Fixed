@@ -24,10 +24,16 @@ function merge (obj1, obj2) {
 	return obj1;
 }
 
-function FQL (table) {}
+function FQL (table) {
+	this.data = table;
+}
 
 module.exports = {
 	FQL: FQL,
 	merge: merge,
 	_readTable: _readTable
+};
+
+FQL.prototype.exec = function(){
+	return this.data;
 };

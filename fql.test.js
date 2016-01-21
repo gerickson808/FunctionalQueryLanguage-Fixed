@@ -48,7 +48,7 @@ describe('Functional Query Language', function () {
    * Should have an exec() function that returns the
    * current internal data set of the FQL class
    */
-  xit('should have an exec function', function () {
+  it('should have an exec function', function () {
     var all_movies = moviesTable.exec();
     expect(all_movies).toEqual(movies);
   });
