@@ -107,7 +107,7 @@ describe('Functional Query Language', function () {
    * where quries can specify a function
    * instead of a value for any given field
    */
-  xit('should support predicates in where queries', function() {
+  it('should support predicates in where queries', function() {
     var results = moviesTable
                     .where({year: function(v) {
                       return v > 2000;

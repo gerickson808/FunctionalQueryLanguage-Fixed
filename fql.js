@@ -51,11 +51,16 @@ FQL.prototype.where = function(obj) {
 	var newData = this.data.filter(function(movie) {
 		var found = true;
 		for (var key in obj) {
-			if ( movie[key] !== obj[key] ) {
-				found = false;
+			if(typeof obj[key] !== 'function'){
+				if ( movie[key] !== obj[key] ) {
+					found = false;
+				}
+			}else{
+				if(!obj[key](movie[key])) found = false;
 			}
 		}
 		return found;
 	});
 	return new FQL(newData);
 };
+
