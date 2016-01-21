@@ -83,3 +83,26 @@ FQL.prototype.order = function(string){
 	});
 	return new FQL(newData);
 };
+
+FQL.prototype.left_join = function(fql, func) {
+	var newData = [];
+	this.data.forEach(function(movie) {
+		fql.data.forEach(function(role) {
+			if(func(movie, role)) {
+				// Make copy of movie so we're not overwriting actual movie object
+				var movieCopy = {};
+				for (var key in movie) {
+					movieCopy[key] = movie[key];
+				}
+
+				for (var key in role) {
+					movieCopy[key] = role[key];
+				}
+				newData.push(movieCopy);
+			}
+			
+		});
+	});
+
+	return new FQL(newData);
+};

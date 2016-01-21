@@ -206,7 +206,7 @@ describe('Functional Query Language - Level 2', function () {
   });
 
   /** 
-   * Similar to LEFT OUTER JOIN in SQL, this combines on FQL data set with another
+   * Similar to LEFT OUTER JOIN in SQL, this combines one FQL data set with another
    * Let's see if we can see how many roles were in the movie Hollow Man
    *
    * FQL.left_join takes two parameters, first a new FQL data set, and secondly
@@ -216,7 +216,7 @@ describe('Functional Query Language - Level 2', function () {
    * It's an outer join because every row in the left data set can be combined with multiple 
    * rows in the right data set (the joined data set)
    */
-  xit('should support left outer joining the results with a limit', function () {
+  it('should support left outer joining the results with a limit', function () {
     var rolesTable = new FQL(roles);
 
     var results = moviesTable
