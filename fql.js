@@ -51,12 +51,12 @@ FQL.prototype.limit = function(num){
 FQL.prototype.where = function(obj) {
 	var newData = [];
 	var keys = Object.keys(obj);
-	dataCopy = newData.concat(this.data);
+
 	if (keys.length === 1 && this.indexTables[keys[0]]) {
 		var indices = this.getIndicesOf(keys[0], obj[keys[0]]);
 		indices.forEach(function(index) {
-			newData.push(dataCopy[index]);
-		});
+			newData.push(this.data[index]);
+		}, this);
 		return new FQL(newData);
 	}
 
