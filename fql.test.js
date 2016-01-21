@@ -122,7 +122,7 @@ describe('Functional Query Language', function () {
    *
    * SELECT * FROM movies where year = 2001;
    */
-  xit('should support where queries that return multiple rows', function () {
+  it('should support where queries that return multiple rows', function () {
     var results = moviesTable.where({year: 2001}).exec();
     var expectedResults = [{"id":238072,"name":"Ocean's Eleven","year":2001,"rank":7.5},{"id":300229,"name":"Shrek","year":2001,"rank":8.1},{"id":350424,"name":"Vanilla Sky","year":2001,"rank":6.9}];
     expect(results).toEqual(expectedResults);    
@@ -134,7 +134,7 @@ describe('Functional Query Language', function () {
    *
    * SELECT * FROM movies WHERE year = 2001 and rank > 8;
    */
-  xit('should support multiple where queries that return multiple rows', function () {
+  it('should support multiple where queries that return multiple rows', function () {
     var results = moviesTable
                     .where({
                       year: 2001,
@@ -149,7 +149,7 @@ describe('Functional Query Language', function () {
    * FQL.select(keysArray) can limit which values come back in the query
    * SELECT id, name FROM movies WHERE rank > 8;
    */
-  xit('should support select() queries that limit which values come back', function () {
+  it('should support select() queries that limit which values come back', function () {
     var results = moviesTable
                     .where({rank: function (v) {return v > 8;}})
                     .select(["id", "name"])

@@ -64,3 +64,16 @@ FQL.prototype.where = function(obj) {
 	return new FQL(newData);
 };
 
+FQL.prototype.select = function(properties) {
+	var newData = this.data.map(function(movie) {
+		var selectedObj = {};
+		properties.forEach(function(prop) {
+			selectedObj[prop] = movie[prop];
+		});
+		return selectedObj;
+	});
+
+
+	return new FQL(newData);
+};
+
