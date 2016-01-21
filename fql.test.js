@@ -361,11 +361,10 @@ describe('Functional Query Language - Indexing', function () {
     rolesTable.addIndex('movie_id');
 
     console.time('With index');
-    for (var timesToRun = 1000; timesToRun--;) {
+    for ( timesToRun = 1000; timesToRun--;) {
       var indexResults = rolesTable.where({movie_id: 30959}).exec();
     }
     console.timeEnd('With index');
-
     expect( noIndexResults ).toEqual( indexResults );
   });
 

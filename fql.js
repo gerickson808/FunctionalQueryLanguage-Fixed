@@ -18,10 +18,14 @@ function _readTable (tableName) {
 }
 
 function merge (obj1, obj2) {
-	for (var key in obj2) {
-		obj1[key] = obj2[key];
+	var obj3 = {};
+	for (var key in obj1){
+		obj3[key] = obj1[key];
 	}
-	return obj1;
+	for (key in obj2) {
+		obj3[key] = obj2[key];
+	}
+	return obj3;
 }
 
 function FQL (table) {
@@ -54,6 +58,8 @@ FQL.prototype.where = function(obj) {
 
 	if (keys.length === 1 && this.indexTables[keys[0]]) {
 		var indices = this.getIndicesOf(keys[0], obj[keys[0]]);
+		//ForEach call changes this to global (or nothing in strict)
+		//forEach takes an optional thisArg after callback
 		indices.forEach(function(index) {
 			newData.push(this.data[index]);
 		}, this);
@@ -103,18 +109,8 @@ FQL.prototype.left_join = function(fql, func) {
 	this.data.forEach(function(movie) {
 		fql.data.forEach(function(role) {
 			if(func(movie, role)) {
-				// Make copy of movie so we're not overwriting actual movie object
-				var movieCopy = {};
-				for (var key in movie) {
-					movieCopy[key] = movie[key];
-				}
-
-				for (key in role) {
-					movieCopy[key] = role[key];
-				}
-				newData.push(movieCopy);
+				newData.push(merge(movie,role));
 			}
-			
 		});
 	});
 
