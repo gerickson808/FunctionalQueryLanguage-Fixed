@@ -95,7 +95,7 @@ describe('Functional Query Language', function () {
    * this would be similar to 
    * SELECT * FROM movies WHERE name = "Shrek"
    */
-  xit('should support where queries', function() {
+  it('should support where queries', function() {
     var results = moviesTable.where({name: "Shrek"}).exec();
     // results should look like this:
     // [{"id":300229,"name":"Shrek","year":2001,"rank":8.1}] 

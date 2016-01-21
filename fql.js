@@ -46,3 +46,16 @@ FQL.prototype.limit = function(num){
 	var newData = this.data.slice(0,num);
 	return new FQL(newData);
 };
+
+FQL.prototype.where = function(obj) {
+	var newData = this.data.filter(function(movie) {
+		var found = true;
+		for (var key in obj) {
+			if ( movie[key] !== obj[key] ) {
+				found = false;
+			}
+		}
+		return found;
+	});
+	return new FQL(newData);
+};
