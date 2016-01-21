@@ -49,19 +49,32 @@ FQL.prototype.limit = function(num){
 };
 
 FQL.prototype.where = function(obj) {
-	var newData = this.data.filter(function(movie) {
-		var found = true;
+	var newData = [];
+	var keys = Object.keys(obj);
+	dataCopy = newData.concat(this.data);
+	if (keys.length === 1 && this.indexTables[keys[0]]) {
+		var indices = this.getIndicesOf(keys[0], obj[keys[0]]);
+		indices.forEach(function(index) {
+			newData.push(dataCopy[index]);
+		});
+		return new FQL(newData);
+	}
+
+	newData = this.data.filter(function(movie) {
+
 		for (var key in obj) {
 			if(typeof obj[key] !== 'function'){
+
 				if ( movie[key] !== obj[key] ) {
-					found = false;
+					return false;
 				}
 			}else{
-				if(!obj[key](movie[key])) found = false;
+				if(!obj[key](movie[key])) return false;
 			}
 		}
-		return found;
+		return true;
 	});
+
 	return new FQL(newData);
 };
 
