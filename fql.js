@@ -41,3 +41,8 @@ FQL.prototype.exec = function(){
 FQL.prototype.count = function() {
 	return this.data.length;
 };
+
+FQL.prototype.limit = function(num){
+	var newData = this.data.slice(0,num);
+	return new FQL(newData);
+};

@@ -59,7 +59,6 @@ describe('Functional Query Language', function () {
     // 
     // There are 36 movies in the movies Array
     expect(moviesTable.count()).toEqual(36);
-    console.log(moviesTable);
   });
 
   /**
@@ -67,7 +66,7 @@ describe('Functional Query Language', function () {
    *  cut out the first X rows.  count() should 
    *  then show only those rows.
    */
-  xit('should have a limit() method', function () {
+  it('should have a limit() method', function () {
     expect(moviesTable.limit(5).count()).toEqual(5);
   });
 
@@ -75,14 +74,14 @@ describe('Functional Query Language', function () {
    * The exec() function should returns the
    * current result of the chained query
    */
-  xit('should limit and have chained exec function', function () {
+  it('should limit and have chained exec function', function () {
     // this will return the first movie row, Aliens
     var first_movie = moviesTable.limit(1).exec();
     expect(first_movie.length).toEqual(1);
     expect(first_movie[0].name).toEqual("Aliens");
   });
 
-  xit('should reset to original data after exec', function () {
+  it('should reset to original data after exec', function () {
     moviesTable.limit(1).exec();
     var all_movies = moviesTable.exec();
     expect(all_movies).toEqual(movies);
