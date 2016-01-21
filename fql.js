@@ -77,3 +77,9 @@ FQL.prototype.select = function(properties) {
 	return new FQL(newData);
 };
 
+FQL.prototype.order = function(string){
+	var newData = this.data.sort(function(a,b){
+		return a[string] - b[string];
+	});
+	return new FQL(newData);
+};

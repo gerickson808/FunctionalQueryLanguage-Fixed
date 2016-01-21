@@ -167,7 +167,7 @@ describe('Functional Query Language', function () {
    * Refer to https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
    * on how to implement custom sort functions
    */
-  xit('should support order queries that sort by a given row', function () {
+  it('should support order queries that sort by a given row', function () {
     var results = moviesTable
                     .where({rank: function (v) { return v !== null; }})
                     .order('rank')
@@ -177,7 +177,7 @@ describe('Functional Query Language', function () {
     expect(results).toEqual(expectedResults);
   });
 
-  xit('ordering should not change the order for subsequent queries', function () {
+  it('ordering should not change the order for subsequent queries', function () {
     var resultsA = moviesTable
                     .where({year: 1999})
                     .order('rank')
