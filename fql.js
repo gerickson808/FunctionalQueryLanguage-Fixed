@@ -37,3 +37,7 @@ module.exports = {
 FQL.prototype.exec = function(){
 	return this.data;
 };
+
+FQL.prototype.count = function() {
+	return this.data.length;
+};

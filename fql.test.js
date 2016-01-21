@@ -53,12 +53,13 @@ describe('Functional Query Language', function () {
     expect(all_movies).toEqual(movies);
   });
 
-  xit('should have a count method', function () {
+  it('should have a count method', function () {
     // count() returns how many records are in the movies array
     // check 0_movies.js for the data set
     // 
     // There are 36 movies in the movies Array
     expect(moviesTable.count()).toEqual(36);
+    console.log(moviesTable);
   });
 
   /**
