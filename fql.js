@@ -133,7 +133,6 @@ FQL.prototype.addIndex = function(key){
 
 FQL.prototype.getIndicesOf = function(key,value){
 	if(this.indexTables[key]) return this.indexTables[key][value];
-	return undefined;
 };
 
 
